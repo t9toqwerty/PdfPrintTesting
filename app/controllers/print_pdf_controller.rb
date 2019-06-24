@@ -2,13 +2,10 @@
 
 class PrintPdfController < ApplicationController
   def print
+    pdf = WickedPdf.new.pdf_from_html_file(Rails.root + 'index.html')
     respond_to do |format|
-      format.html
-      p format
-      format.pdf do
-        p "fff"
-        render pdf: "file_name" # Excluding ".pdf" extension.
-      end
+      format.pdf
     end
+    send_data pdf, type: 'application/pdf', disposition: 'inline'
   end
 end
