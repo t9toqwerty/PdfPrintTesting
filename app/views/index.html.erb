@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>QR Code List</title>
+  <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+  <style>
+    td {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <% @ids.each do |id| %>
+    <tr>
+      <td class="qrcode"><%= id %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+<script>
+    let qrCodes = document.getElementsByClassName("qrcode");
+    for (let i = 0; i < qrCodes.length; i++) {
+        const element = qrCodes[i];
+        new QRCode(element, element.innerText);
+    }
+</script>
+</body>
+</html>
